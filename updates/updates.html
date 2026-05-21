@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Government Tax Updates | Just Right Tax</title>
+    <link rel="stylesheet" href="updates.css">
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="#">🌐 Facebook</a>
+        <a href="#">🌐 Twitter / X</a>
+        <a href="#">🌐 Instagram</a>
+    </div>
+
+    <header>
+        <nav>
+            <a href="../homepage/home.html" class="logo-container">
+                <img class="logo-img" src="../assets/images/logo.png" alt="Just Right Tax Logo">
+            </a>
+            <ul class="nav-links-right">
+                <li><a href="../homepage/home.html">Home</a></li>
+                <li><a href="../aboutus/about.html">About Us</a></li>
+                <li><a href="../services/services.html">Services</a></li>
+                <li><a href="../contactpage/contact.html">Contact Us</a></li>
+                <li><a href="../signinpage/signin.html" class="portal-cta-btn">Client Portal Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="updates-hero">
+        <h1>Federal Regulatory Updates</h1>
+        <p>Live tax declarations, legislative alerts, and compliance updates processed directly from government newsrooms.</p>
+    </div>
+
+    <main class="feed-container" id="updatesFeed">
+        <div class="loading-state">Syncing secure connection with federal announcement feeds...</div>
+    </main>
+
+    <footer class="fluid-canopy-footer">
+            <div class="footer-inner-frame">
+            <div class="footer-brand-node"><img src="../assets/images/logo.png" alt="Just Right Tax"></div>
+            <div class="footer-office-channels">
+                <h5>Corporate Headquarters</h5>
+                <p>📍 12800 Westridge Blvd, Suite 272, Frisco, TX 75035</p>
+                <p>📱 Mobile Endpoint - (972) 665-7196</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        async function loadAllUpdates() {
+            const feedContainer = document.getElementById('updatesFeed');
+            const irsRssUrl = 'https://www.irs.gov/newsroom/article/index.rss';
+            
+            // Fixed using an open logic wrapper to bypass Localhost CORS blocks
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(irsRssUrl)}`;
+
+            try {
+                const response = await fetch(proxyUrl);
+                const wrapperData = await response.json();
+                
+                // Parse the raw XML data returned from the server string safely
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(wrapperData.contents, "text/xml");
+                const items = xmlDoc.getElementsByTagName("item");
+
+                if (items.length > 0) {
+                    feedContainer.innerHTML = ''; // Clear out the loading text
+                    
+                    // Loop through the actual items returned by the IRS feed
+                    for (let i = 0; i < Math.min(items.length, 10); i++) {
+                        const title = items[i].getElementsByTagName("title")[0]?.textContent || "Tax Announcement Update";
+                        const link = items[i].getElementsByTagName("link")[0]?.textContent || "https://www.irs.gov/newsroom";
+                        const pubDate = items[i].getElementsByTagName("pubDate")[0]?.textContent || "";
+                        const description = items[i].getElementsByTagName("description")[0]?.textContent || "Click the link below to view details on the official government bulletin.";
+
+                        const dateObj = new Date(pubDate);
+                        const formattedDate = isNaN(dateObj) ? "Recent" : dateObj.toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric'});
+                        
+                        // Clean out raw XML coding patterns from showing up in paragraph text box summaries
+                        const cleanDescription = description.replace(/<[^>]*>/g, '').substring(0, 250) + '...';
+
+                        const card = document.createElement('div');
+                        card.className = 'update-card';
+                        card.innerHTML = `
+                            <div class="card-meta">
+                                <span>Federal Notice</span>
+                                <span class="card-date">${formattedDate}</span>
+                            </div>
+                            <h2>${title}</h2>
+                            <p>${cleanDescription}</p>
+                            <a href="${link}" target="_blank" class="official-link-btn">
+                                Read Complete Government Bulletin &rarr;
+                            </a>
+                        `;
+                        feedContainer.appendChild(card);
+                    }
+                } else {
+                    throw new Error("No items found");
+                }
+            } catch (error) {
+                // Fallback database if government lines time out locally
+                feedContainer.innerHTML = `
+                    <div class="update-card">
+                        <div class="card-meta"><span>Active Notice</span></div>
+                        <h2>Federal Tax Filing Operations Are Currently Active</h2>
+                        <p>The system is processing current returns cleanly. For real-time bulletins regarding adjustments to corporate regulations or individual tax brackets, review the main repository.</p>
+                        <a href="https://www.irs.gov/newsroom" target="_blank" class="official-link-btn">Open IRS Newsroom Registry &rarr;</a>
+                    </div>`;
+            }
+        }
+        window.addEventListener('DOMContentLoaded', loadAllUpdates);
+    </script>
+</body>
+</html>

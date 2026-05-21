@@ -1,0 +1,106 @@
+/* style.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- SAFETY RULE: Kills the horizontal scroll bar --- */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; 
+}
+
+:root {
+    --slate-dark: #0f172a;
+    --brand-blue: #1e40af;
+    --bg-canvas: #f8fafc;
+    --clean-white: #ffffff;
+}
+
+body {
+    background-color: var(--bg-canvas);
+    color: #334155;
+    font-family: system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure these never exceed the screen width */
+header, main, footer {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+header {
+    background: var(--clean-white);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Image safety: prevents oversized images from breaking layout */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Grid layout safety */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+footer {
+    background-color: var(--slate-dark);
+    color: #94a3b8;
+    text-align: center;
+    padding: 2.5rem;
+    margin-top: auto;
+}
+/* Container to force all cards to look uniform */
+/* 1. Force the container to a strict size */
+.card-image-wrap {
+    width: 100%;
+    height: 180px;         /* This makes all image boxes the same height */
+    overflow: hidden;      /* This clips anything that spills out */
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    background: #e2e8f0;   /* Placeholder color */
+    flex-shrink: 0;        /* Prevents the image box from squishing */
+}
+
+/* 2. Force the image to cover the box area */
+.card-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;     /* This is the magic: it crops/scales images to fit */
+    display: block;
+}
+
+/* 3. Ensure the card box itself is consistent */
+.service-home-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;          /* Forces the card to fill the grid cell */
+    text-decoration: none;
+    color: inherit;
+    /* ... keep your other existing styles (border, padding, etc.) here ... */
+}

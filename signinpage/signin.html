@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal Login | Just Right Tax</title>
+    <link rel="stylesheet" href="signinpage.css">
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="#">🌐 Facebook</a>
+        <a href="#">🌐 Twitter / X</a>
+        <a href="#">🌐 Instagram</a>
+        <a href="#">🌐 RSS</a>
+    </div>
+
+    <header>
+        <nav>
+            <a href="../homepage/home.html" class="logo-container">
+                <img class="logo-img" src="../assets/images/logo.png" alt="Just Right Tax Logo">
+            </a>
+            <ul class="nav-links-right">
+                <li><a href="../homepage/home.html">Home</a></li>
+                <li><a href="../aboutus/about.html">About Us</a></li>
+                <li><a href="../services/services.html">Services</a></li>
+                <li><a href="../contactpage/contact.html">Contact Us</a></li>
+                <li><a href="signin.html" class="portal-cta-btn">Client Portal Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="login-split-canvas">
+        
+        <div class="login-visual-canopy">
+            <h1>Secure Compliance Dashboard</h1>
+            <p>Access your personal or corporate accounting ledger streams, document archives, and active tax track modules instantly inside your encrypted framework.</p>
+        </div>
+
+        <div class="login-entry-console">
+            <div class="console-header-node">
+                <h2>Welcome Back</h2>
+                <p>Please enter your credentials to open your client portal ecosystem.</p>
+            </div>
+
+            <form id="portalLoginForm" onsubmit="handleLoginSubmit(event)">
+                
+                <div class="portal-form-group">
+                    <label for="clientEmail">EMAIL ID</label>
+                    <div class="input-control-wrapper">
+                        <input type="email" id="clientEmail" placeholder="name@company.com" required autocomplete="username">
+                    </div>
+                </div>
+
+                <div class="portal-form-group">
+                    <label for="clientPassword">PASSWORD</label>
+                    <div class="input-control-wrapper">
+                        <input type="password" id="clientPassword" placeholder="••••••••••••" required autocomplete="current-password">
+                        <button type="button" class="password-reveal-trigger" id="passwordToggle">SHOW</button>
+                    </div>
+                </div>
+
+                <div class="form-options-row">
+                    <label class="remember-checkbox-node">
+                        <input type="checkbox" id="rememberSession"> Remember device
+                    </label>
+                    <a href="#" class="forgot-password-anchor">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="portal-submit-btn">Sign In to Dashboard</button>
+                
+            </form>
+        </div>
+
+    </main>
+
+    <footer class="fluid-canopy-footer">
+        <div class="footer-inner-frame">
+            <div class="footer-brand-node">
+                <img src="../assets/images/logo.png" alt="Just Right Tax Bottom Logo">
+            </div>
+            <div class="footer-office-channels">
+                <h5>Corporate Headquarters</h5>
+                <p>📍 12800 Westridge Blvd, Suite 272, Frisco, TX 75035</p>
+                <p>📱 Mobile Endpoint - (972) 665-7196</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Password Visibility Toggle Mechanics
+        const passwordInput = document.getElementById('clientPassword');
+        const passwordToggle = document.getElementById('passwordToggle');
+
+        passwordToggle.addEventListener('click', () => {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordToggle.textContent = 'HIDE';
+            } else {
+                passwordInput.type = 'password';
+                passwordToggle.textContent = 'SHOW';
+            }
+        });
+
+        // Verification Submit Intercept Handler Demo Loop
+        function handleLoginSubmit(event) {
+            event.preventDefault();
+            const email = document.getElementById('clientEmail').value;
+            const remember = document.getElementById('rememberSession').checked;
+            
+            alert(`Initializing secure access verification handshake loop for: ${email}\nSession Retention Flag: ${remember}`);
+        }
+    </script>
+</body>
+</html>
