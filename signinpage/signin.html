@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal Login | Just Right Tax</title>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+        }
+        body { 
+            background: #f8fafc; 
+            color: #1e293b; 
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- TOP BLUE SOCIAL NAVIGATION BAR --- */
+        .top-bar {
+            background-color: #0099ff;
+            padding: 8px 2rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1.5rem;
+            width: 100%;
+        }
+        .top-bar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+        .top-bar a:hover {
+            opacity: 0.8;
+        }
+
+        /* --- MAIN NAVIGATION HEADER BLOCK --- */
+        header { 
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0; 
+            width: 100%; 
+            padding: 1rem 2rem; 
+        }
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            width: 100%; 
+        }
+        .logo-container { 
+            display: flex; 
+            align-items: center; 
+            text-decoration: none; 
+        }
+        .logo-img { 
+            height: 45px; 
+            width: auto; 
+        }
+        .nav-links-right { 
+            display: flex; 
+            list-style: none; 
+            align-items: center; 
+            gap: 2rem; 
+        }
+        .nav-links-right a { 
+            text-decoration: none; 
+            color: #475569; 
+            font-weight: 600; 
+            font-size: 0.95rem; 
+            transition: color 0.2s; 
+        }
+        .nav-links-right a:hover, .nav-links-right a.active { 
+            color: #0099ff; 
+        }
+        .portal-cta-btn { 
+            background: #1e40af; 
+            color: #ffffff !important; 
+            padding: 0.6rem 1.2rem; 
+            border-radius: 8px; 
+        }
+
+        /* --- PREMIUM SPLIT LOGIN WORKSPACE CONSOLE --- */
+        .login-split-canvas {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            max-width: 1200px;
+            width: 100%;
+            margin: 3rem auto;
+            background: #ffffff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Left Branding Feature Image Column */
+        .login-visual-canopy {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(30, 64, 175, 0.75)), url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #ffffff;
+            position: relative;
+        }
+        .login-visual-canopy h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.03em;
+        }
+        .login-visual-canopy p {
+            color: #e0f2fe;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            max-width: 460px;
+        }
+
+        /* Right Security Form Column */
+        .login-entry-console {
+            padding: 4.5rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .console-header-node {
+            margin-bottom: 2.5rem;
+        }
+        .console-header-node h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 0.4rem;
+        }
+        .console-header-node p {
+            color: #64748b;
+            font-size: 0.98rem;
+        }
+
+        /* Form Mechanics Styling */
+        .portal-form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .portal-form-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #475569;
+            margin-bottom: 0.5rem;
+        }
+        .input-control-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .portal-form-group input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            font-size: 1rem;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            color: #0f172a;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        .portal-form-group input:focus {
+            background: #ffffff;
+            border-color: #0099ff;
+            box-shadow: 0 0 0 4px rgba(0, 153, 255, 0.12);
+        }
+
+        /* Interactive visibility tracking button */
+        .password-reveal-trigger {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .password-reveal-trigger:hover {
+            color: #1e40af;
+            background: #f1f5f9;
+        }
+
+        /* Extra parameters alignment space */
+        .form-options-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        .remember-checkbox-node {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #475569;
+            cursor: pointer;
+        }
+        .remember-checkbox-node input {
+            width: 16px;
+            height: 16px;
+            accent-color: #0099ff;
+            cursor: pointer;
+        }
+        .forgot-password-anchor {
+            color: #1e40af;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .forgot-password-anchor:hover {
+            text-decoration: underline;
+        }
+
+        /* Core Access Action Button */
+        .portal-submit-btn {
+            width: 100%;
+            padding: 0.95rem;
+            background: #1e40af;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+            transition: all 0.2s ease;
+        }
+        .portal-submit-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(30, 64, 175, 0.3);
+        }
+        .portal-submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* --- STYLISH SYSTEM FOOTER --- */
+        .fluid-canopy-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            margin-top: auto;
+            position: relative;
+            padding-top: 6px;
+        }
+        .fluid-canopy-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #ff4500, #1e40af, #0d9488, #ff4500);
+        }
+        .footer-inner-frame {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+        }
+        .footer-brand-node img {
+            height: 45px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+        .footer-office-channels h5 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+        .footer-office-channels p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive Architecture Parameters */
+        @media (max-width: 968px) {
+            .login-split-canvas {
+                grid-template-columns: 1fr;
+                max-width: 540px;
+                margin: 2rem auto;
+            }
+            .login-visual-canopy {
+                display: none;
+            }
+            .login-entry-console {
+                padding: 3rem 2rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .top-bar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="#">🌐 Facebook</a>
+        <a href="#">🌐 Twitter / X</a>
+        <a href="#">🌐 Instagram</a>
+        <a href="#">🌐 RSS</a>
+    </div>
+
+    <header>
+        <nav>
+            <a href="../homepage/home.html" class="logo-container">
+                <img class="logo-img" src="../logo.png" alt="Just Right Tax Logo">
+            </a>
+            <ul class="nav-links-right">
+                <li><a href="../homepage/home.html">Home</a></li>
+                <li><a href="../aboutus/about.html">About Us</a></li>
+                <li><a href="../services/services.html">Services</a></li>
+                <li><a href="../contactpage/contact.html">Contact Us</a></li>
+                <li><a href="signin.html" class="portal-cta-btn">Client Portal Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="login-split-canvas">
+        
+        <div class="login-visual-canopy">
+            <h1>Secure Compliance Dashboard</h1>
+            <p>Access your personal or corporate accounting ledger streams, document archives, and active tax track modules instantly inside your encrypted framework.</p>
+        </div>
+
+        <div class="login-entry-console">
+            <div class="console-header-node">
+                <h2>Welcome Back</h2>
+                <p>Please enter your credentials to open your client portal ecosystem.</p>
+            </div>
+
+            <form id="portalLoginForm" onsubmit="handleLoginSubmit(event)">
+                
+                <div class="portal-form-group">
+                    <label for="clientEmail">EMAIL ID</label>
+                    <div class="input-control-wrapper">
+                        <input type="email" id="clientEmail" placeholder="name@company.com" required autocomplete="username">
+                    </div>
+                </div>
+
+                <div class="portal-form-group">
+                    <label for="clientPassword">PASSWORD</label>
+                    <div class="input-control-wrapper">
+                        <input type="password" id="clientPassword" placeholder="••••••••••••" required autocomplete="current-password">
+                        <button type="button" class="password-reveal-trigger" id="passwordToggle">SHOW</button>
+                    </div>
+                </div>
+
+                <div class="form-options-row">
+                    <label class="remember-checkbox-node">
+                        <input type="checkbox" id="rememberSession"> Remember device
+                    </label>
+                    <a href="#" class="forgot-password-anchor">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="portal-submit-btn">Sign In to Dashboard</button>
+                
+            </form>
+        </div>
+
+    </main>
+
+    <footer class="fluid-canopy-footer">
+        <div class="footer-inner-frame">
+            <div class="footer-brand-node">
+                <img src="../logo.png" alt="Just Right Tax Bottom Logo">
+            </div>
+            <div class="footer-office-channels">
+                <h5>Corporate Headquarters</h5>
+                <p>📍 12800 Westridge Blvd, Suite 272, Frisco, TX 75035</p>
+                <p>📱 Mobile Endpoint - (972) 665-7196</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Password Visibility Toggle Mechanics
+        const passwordInput = document.getElementById('clientPassword');
+        const passwordToggle = document.getElementById('passwordToggle');
+
+        passwordToggle.addEventListener('click', () => {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordToggle.textContent = 'HIDE';
+            } else {
+                passwordInput.type = 'password';
+                passwordToggle.textContent = 'SHOW';
+            }
+        });
+
+        // Verification Submit Intercept Handler Demo Loop
+        function handleLoginSubmit(event) {
+            event.preventDefault();
+            const email = document.getElementById('clientEmail').value;
+            const remember = document.getElementById('rememberSession').checked;
+            
+            alert(`Initializing secure access verification handshake loop for: ${email}\nSession Retention Flag: ${remember}`);
+        }
+    </script>
+</body>
+</html>

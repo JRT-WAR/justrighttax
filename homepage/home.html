@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Just Right Tax</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+        }
+        body { 
+            background: #f8fafc; 
+            color: #1e293b; 
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- TOP BLUE SOCIAL NAVIGATION BAR --- */
+        .top-bar {
+            background-color: #0099ff;
+            padding: 10px 2rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1.5rem;
+            width: 100%;
+        }
+        .top-bar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: transform 0.2s, opacity 0.2s;
+            display: inline-block;
+        }
+        .top-bar a:hover {
+            opacity: 0.85;
+            transform: scale(1.1);
+        }
+
+        /* --- MAIN NAVIGATION HEADER BLOCK --- */
+        header { 
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0; 
+            width: 100%; 
+            padding: 1rem 2rem; 
+        }
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            width: 100%; 
+        }
+        .logo-container { display: flex; align-items: center; text-decoration: none; }
+        .logo-img { height: 45px; width: auto; }
+        .nav-links-right { display: flex; list-style: none; align-items: center; gap: 2rem; }
+        .nav-links-right a { text-decoration: none; color: #475569; font-weight: 600; font-size: 0.95rem; transition: color 0.2s; }
+        .nav-links-right a:hover, .nav-links-right a.active { color: #0099ff; }
+        .portal-cta-btn { background: #1e40af; color: #ffffff !important; padding: 0.6rem 1.2rem; border-radius: 8px; }
+
+        /* --- HERO SECTION --- */
+        .immersive-hero {
+            position: relative;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(30, 64, 175, 0.65)), url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 440px;
+            width: 100%;
+            padding: 6rem 1.5rem;
+            text-align: center;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .immersive-hero h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 1.2rem; max-width: 900px; line-height: 1.15; }
+        .immersive-hero p { color: #e0f2fe; font-size: 1.25rem; max-width: 720px; margin-bottom: 2.5rem; line-height: 1.6; }
+
+        .hero-action-deck { display: flex; gap: 1.25rem; justify-content: center; align-items: center; z-index: 5; }
+        .action-primary-btn { 
+            padding: 0.9rem 2.5rem; 
+            background: #ffffff; 
+            color: #1e40af; 
+            text-decoration: none; 
+            border-radius: 10px; 
+            font-size: 1rem; 
+            font-weight: 700; 
+            box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.2); 
+            transition: all 0.2s ease; 
+        }
+        .action-primary-btn:hover { transform: translateY(-2px); background: #f8fafc; box-shadow: 0 15px 25px -5px rgba(15, 23, 42, 0.3); }
+        
+        .action-secondary-btn { padding: 0.9rem 2.5rem; background: rgba(255, 255, 255, 0.15); color: #ffffff; text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 10px; font-size: 1rem; font-weight: 700; backdrop-filter: blur(4px); transition: all 0.2s ease; }
+        .action-secondary-btn:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.25); }
+
+        /* --- CONTAINER WORKSPACE --- */
+        .homepage-workspace { max-width: 1140px; margin: 4rem auto 6rem; padding: 0 1.5rem; z-index: 5; }
+        
+        .category-header-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.5rem; border-left: 6px solid #1e40af; padding-left: 1rem; }
+        .category-header-row.indiv-theme { border-left-color: #0d9488; }
+        .category-header-row.updates-theme { border-left-color: #ef4444; }
+        
+        .category-heading { font-size: 2.2rem; font-weight: 800; color: #0f172a; }
+        .view-all-portal-link { font-size: 0.95rem; font-weight: 700; color: #1e40af; text-decoration: none; transition: color 0.2s; }
+        .category-header-row.indiv-theme .view-all-portal-link { color: #0d9488; }
+        .category-header-row.updates-theme .view-all-portal-link { color: #ef4444; }
+        .view-all-portal-link:hover { text-decoration: underline; }
+        .category-desc { color: #64748b; font-size: 1.1rem; margin-bottom: 2rem; padding-left: 1.4rem; }
+
+        /* --- GRID STYLING --- */
+        .services-home-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; margin-bottom: 4.5rem; }
+        .service-home-box { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-decoration: none; color: inherit; }
+        .service-home-box:hover { transform: translateY(-4px); box-shadow: 0 16px 24px -5px rgba(15, 23, 42, 0.08); border-color: #0099ff; }
+        
+        .card-content-inner { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .card-image-wrap { width: 100%; height: 180px; overflow: hidden; background: #e2e8f0; position: relative; }
+        .card-image-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .service-home-box:hover .card-image-wrap img { transform: scale(1.05); }
+
+        .updates-box:hover { border-color: #ef4444; box-shadow: 0 16px 24px -5px rgba(239, 68, 68, 0.08); }
+        
+        .service-home-box h3 { font-size: 1.25rem; color: #0f172a; margin-bottom: 0.75rem; font-weight: 700; line-height: 1.4; }
+        .service-home-box p { font-size: 0.98rem; color: #475569; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; line-clamp: 3; overflow: hidden; }
+        
+        .card-date-badge { font-size: 0.8rem; font-weight: 700; color: #ef4444; text-transform: uppercase; margin-bottom: 0.5rem; display: block; letter-spacing: 0.05em; }
+        .arrow-action { margin-top: 1.5rem; font-size: 0.88rem; font-weight: 700; color: #1e40af; display: flex; align-items: center; gap: 0.25rem; }
+        .indiv-box .arrow-action { color: #0d9488; }
+        .updates-box .arrow-action { color: #ef4444; }
+
+        .loading-text { font-size: 1.1rem; color: #64748b; padding: 2rem 1.4rem; grid-column: 1 / -1; }
+
+        /* --- FOOTER --- */
+        .fluid-canopy-footer { background: #0f172a; color: #94a3b8; margin-top: auto; position: relative; padding-top: 6px; }
+        .fluid-canopy-footer::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #ff4500, #1e40af, #0d9488, #ff4500); }
+        .footer-inner-frame { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2.5rem; }
+        .footer-brand-node img { height: 45px; width: auto; filter: brightness(0) invert(1); }
+        .footer-office-channels h5 { color: #ffffff; font-size: 1.1rem; margin-bottom: 0.75rem; font-weight: 700; }
+        .footer-office-channels p { font-size: 0.95rem; line-height: 1.6; }
+
+        @media (max-width: 768px) {
+            .immersive-hero h1 { font-size: 2.5rem; }
+            .top-bar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+
+    <header>
+        <nav>
+            <a href="home.html" class="logo-container">
+                <img class="logo-img" src="../logo.png" alt="Just Right Tax Logo">
+            </a>
+            <ul class="nav-links-right">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="../aboutus/about.html">About Us</a></li>
+                <li><a href="../services/services.html">Services</a></li>
+                <li><a href="../contactpage/contact.html">Contact Us</a></li>
+                <li><a href="../signinpage/signin.html" class="portal-cta-btn">Client Portal Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="immersive-hero">
+        <h1>Tax Solutions Handled Perfectly</h1>
+        <p>Your trusted expert partner in comprehensive compliance management, business registration tracks, corporate accounting networks, and personalized tax solutions.</p>
+        <div class="hero-action-deck">
+            <a href="../aboutus/about.html" class="action-primary-btn">Explore Us</a>
+            <a href="../contactpage/contact.html" class="action-secondary-btn">Contact Us</a>
+        </div>
+    </div>
+
+    <main class="homepage-workspace">
+        
+        <div class="category-header-row updates-theme">
+            <h2 class="category-heading">Live Updates</h2>
+            <a href="../updates/updates.html" class="view-all-portal-link">View Full News Dashboard &rarr;</a>
+        </div>
+        <p class="category-desc">Real-time legislative tracking, IRS announcements, and federal fiscal updates fetched live.</p>
+        <div class="services-home-grid" id="liveNewsGrid">
+            <div class="loading-text">Syncing with federal announcement networks...</div>
+        </div>
+
+        <div class="category-header-row">
+            <h2 class="category-heading">Business Services</h2>
+            <a href="../services/services.html?track=business" class="view-all-portal-link">View All Business Services &rarr;</a>
+        </div>
+        <p class="category-desc">Custom tools built to protect and scale your corporate infrastructure compliance loops.</p>
+        <div class="services-home-grid">
+            <a href="../services/services.html?track=business" class="service-home-box">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Business Formation">
+                </div>
+                <div class="card-content-inner">
+                    <div>
+                        <h3>Business & Non-Profit Formation</h3>
+                        <p>Guidance through every step of forming your LLC, Corporation, or Partnership smoothly and in full compliance.</p>
+                    </div>
+                    <span class="arrow-action">Explore More &rarr;</span>
+                </div>
+            </a>
+            <a href="../services/services.html?track=business" class="service-home-box">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80" alt="Payroll Processing">
+                </div>
+                <div class="card-content-inner">
+                    <div>
+                        <h3>Payroll Processing</h3>
+                        <p>Handling all federal and state tax withholding loops accurately while ensuring employees are paid promptly.</p>
+                    </div>
+                    <span class="arrow-action">Explore More &rarr;</span>
+                </div>
+            </a>
+            <a href="../services/services.html?track=business" class="service-home-box">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80" alt="Corporate Compliance">
+                </div>
+                <div class="card-content-inner">
+                    <div>
+                        <h3>Corporate Compliance</h3>
+                        <p>Comprehensive solutions and in-depth research to help businesses navigate current tax laws and standards.</p>
+                    </div>
+                    <span class="arrow-action">Explore More &rarr;</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="category-header-row indiv-theme">
+            <h2 class="category-heading">Individual Services</h2>
+            <a href="../services/services.html?track=individual" class="view-all-portal-link">View All Individual Services &rarr;</a>
+        </div>
+        <p class="category-desc">Maximize your personal asset loops, claim deductions securely, and manage strategic filings.</p>
+        <div class="services-home-grid">
+            <a href="../services/services.html?track=individual" class="service-home-box indiv-box">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=600&q=80" alt="Individual Tax Returns">
+                </div>
+                <div class="card-content-inner">
+                    <div>
+                        <h3>Individual Tax Returns</h3>
+                        <p>Expert filing for 1040, 1040NR, Sole Proprietorship, and Rental Properties across all 50 states.</p>
+                    </div>
+                    <span class="arrow-action">Explore More &rarr;</span>
+                </div>
+            </a>
+            <a href="../services/services.html?track=individual" class="service-home-box indiv-box">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=600&q=80" alt="IRS Representation">
+                </div>
+                <div class="card-content-inner">
+                    <div>
+                        <h3>IRS Representation</h3>
+                        <p>Professional integrity to communicate your interests and handle tax matters properly before the IRS.</p>
+                    </div>
+                    <span class="arrow-action">Explore More &rarr;</span>
+                </div>
+            </a>
+            <a href="../services/services.html?track=individual" class="service-home-box indiv-box">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80" alt="ITIN Preparation">
+                </div>
+                <div class="card-content-inner">
+                    <div>
+                        <h3>ITIN Preparation</h3>
+                        <p>Safe assistance through the verification loop to secure ITINs for individuals without a Social Security Number.</p>
+                    </div>
+                    <span class="arrow-action">Explore More &rarr;</span>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <footer class="fluid-canopy-footer">
+        <div class="footer-inner-frame">
+            <div class="footer-brand-node"><img src="../logo.png" alt="Just Right Tax"></div>
+            <div class="footer-office-channels">
+                <h5>Corporate Headquarters</h5>
+                <p>📍 12800 Westridge Blvd, Suite 272, Frisco, TX 75035</p>
+                <p>📱 Mobile Endpoint - (972) 665-7196</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Real-Time News Fetch Engine (Grid View)
+        async function loadHomeNewsGrid() {
+            const gridContainer = document.getElementById('liveNewsGrid');
+            if (!gridContainer) return;
+            
+            const irsRssUrl = 'https://www.irs.gov/newsroom/article/index.rss';
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(irsRssUrl)}`;
+
+            try {
+                const response = await fetch(proxyUrl);
+                const wrapperData = await response.json();
+                
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(wrapperData.contents, "text/xml");
+                const items = xmlDoc.getElementsByTagName("item");
+
+                if (items.length > 0) {
+                    gridContainer.innerHTML = '';
+                    const totalToShow = Math.min(items.length, 3);
+                    for (let i = 0; i < totalToShow; i++) {
+                        const title = items[i].getElementsByTagName("title")[0]?.textContent || "Announcement Update";
+                        const link = items[i].getElementsByTagName("link")[0]?.textContent || "https://www.irs.gov/newsroom";
+                        const pubDate = items[i].getElementsByTagName("pubDate")[0]?.textContent || "";
+                        const description = items[i].getElementsByTagName("description")[0]?.textContent || "";
+
+                        const dateObj = new Date(pubDate);
+                        const formattedDate = isNaN(dateObj) ? "Recent" : dateObj.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'});
+                        const cleanDescription = description.replace(/<[^>]*>/g, '').substring(0, 140) + '...';
+
+                        const newsCard = document.createElement('a');
+                        newsCard.href = link;
+                        newsCard.target = "_blank";
+                        newsCard.className = 'service-home-box updates-box';
+                        newsCard.innerHTML = `
+                            <div style="padding: 2rem;">
+                                <span class="card-date-badge">Notice • ${formattedDate}</span>
+                                <h3>${title}</h3>
+                                <p>${cleanDescription}</p>
+                                <span class="arrow-action">Read Official Bulletin &rarr;</span>
+                            </div>
+                        `;
+                        gridContainer.appendChild(newsCard);
+                    }
+                }
+            } catch (error) {
+                // Fallback Boxes
+                gridContainer.innerHTML = `<p class="loading-text">Live updates currently unavailable. Visit our <a href="../updates/updates.html">News Dashboard</a>.</p>`;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', loadHomeNewsGrid);
+    </script>
+</body>
+</html>

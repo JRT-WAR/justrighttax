@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Just Right Tax</title>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+        }
+        body { 
+            background: #f8fafc; 
+            color: #1e293b; 
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- TOP BLUE SOCIAL NAVIGATION BAR --- */
+        .top-bar {
+            background-color: #0099ff;
+            padding: 8px 2rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1.5rem;
+            width: 100%;
+        }
+        .top-bar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+        .top-bar a:hover {
+            opacity: 0.8;
+        }
+
+        /* --- MAIN NAVIGATION HEADER BLOCK --- */
+        header { 
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0; 
+            width: 100%; 
+            padding: 1rem 2rem; 
+        }
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            width: 100%; 
+        }
+        .logo-container { 
+            display: flex; 
+            align-items: center; 
+            text-decoration: none; 
+        }
+        .logo-img { 
+            height: 45px; 
+            width: auto; 
+        }
+        .nav-links-right { 
+            display: flex; 
+            list-style: none; 
+            align-items: center; 
+            gap: 2rem; 
+        }
+        .nav-links-right a { 
+            text-decoration: none; 
+            color: #475569; 
+            font-weight: 600; 
+            font-size: 0.95rem; 
+            transition: color 0.2s; 
+        }
+        .nav-links-right a:hover, .nav-links-right a.active { 
+            color: #0099ff; 
+        }
+        .portal-cta-btn { 
+            background: #1e40af; 
+            color: #ffffff !important; 
+            padding: 0.6rem 1.2rem; 
+            border-radius: 8px; 
+        }
+
+        /* --- PREMIUM IMAGE HERO OVERLAY --- */
+        .immersive-hero {
+            position: relative;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(30, 64, 175, 0.7)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 400px;
+            width: 100%;
+            padding: 6rem 1.5rem 8rem;
+            text-align: center;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        /* Layered wave effects */
+        .immersive-hero::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background: #f8fafc;
+            clip-path: polygon(0 60%, 35% 85%, 70% 35%, 100% 70%, 100% 100%, 0 100%);
+            opacity: 0.12;
+        }
+        .immersive-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            background: #f8fafc;
+            clip-path: polygon(0 50%, 40% 30%, 75% 75%, 100% 40%, 100% 100%, 0 100%);
+        }
+
+        .immersive-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: 1rem;
+        }
+        .immersive-hero p {
+            color: #e0f2fe;
+            font-size: 1.25rem;
+            max-width: 650px;
+            line-height: 1.6;
+        }
+
+        /* --- MAIN CARD SPACE --- */
+        .main-content-frame {
+            max-width: 1140px;
+            width: 100%;
+            margin: -5rem auto 5rem;
+            padding: 0 1.5rem;
+            z-index: 10;
+            position: relative;
+        }
+        .showcase-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 3.5rem;
+            box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.12);
+        }
+        .showcase-card h2 {
+            font-size: 2rem;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            border-left: 5px solid #0099ff;
+            padding-left: 1rem;
+        }
+        .showcase-card p {
+            color: #475569;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* --- STYLISH SYSTEM FOOTER --- */
+        .fluid-canopy-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            margin-top: auto;
+            position: relative;
+            padding-top: 6px;
+        }
+        .fluid-canopy-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #ff4500, #1e40af, #0d9488, #ff4500);
+        }
+        .footer-inner-frame {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+        }
+        .footer-brand-node img {
+            height: 45px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+        .footer-office-channels h5 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+        .footer-office-channels p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .immersive-hero h1 { font-size: 2.5rem; }
+            .showcase-card { padding: 2rem 1.5rem; }
+            .top-bar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="#">🌐 Facebook</a>
+        <a href="#">🌐 Twitter / X</a>
+        <a href="#">🌐 Instagram</a>
+        <a href="#">🌐 RSS</a>
+    </div>
+
+    <header>
+        <nav>
+            <a href="../homepage/home.html" class="logo-container">
+                <img class="logo-img" src="../logo.png" alt="Just Right Tax Logo">
+            </a>
+            <ul class="nav-links-right">
+                <li><a href="../homepage/home.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="../services/services.html">Services</a></li>
+                <li><a href="../contactpage/contact.html">Contact Us</a></li>
+                <li><a href="../signinpage/signin.html" class="portal-cta-btn">Client Portal Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="immersive-hero">
+        <h1>Our Story & Mission</h1>
+        <p>Dedicated to providing absolute precision tracking loops, absolute integrity, and customized tax execution frameworks.</p>
+    </div>
+
+    <main class="main-content-frame">
+        <div class="showcase-card">
+            <h2>Who We Are</h2>
+            <p>At Just Right Tax, we are an active IRS registry network node composed of licensed professional accounting experts. Our practice centers around building long-term financial security safeguards for both expanding businesses and individual asset protection loops.</p>
+            <p>We pride ourselves on removing the complexity out of numbers. By fusing high-standard technical compliance structures with personalized support pathways, we make sure that your accounting ecosystem operates flawlessly all year round.</p>
+        </div>
+    </main>
+
+    <footer class="fluid-canopy-footer">
+        <div class="footer-inner-frame">
+            <div class="footer-brand-node">
+                <img src="../logo.png" alt="Just Right Tax Bottom Logo">
+            </div>
+            <div class="footer-office-channels">
+                <h5>Corporate Headquarters</h5>
+                <p>📍 12800 Westridge Blvd, Suite 272, Frisco, TX 75035</p>
+                <p>📱 Mobile Endpoint - (972) 665-7196</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

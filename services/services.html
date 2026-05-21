@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Just Right Tax</title>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+        }
+        body { 
+            background: #f8fafc; 
+            color: #1e293b; 
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- TOP BLUE SOCIAL NAVIGATION BAR --- */
+        .top-bar {
+            background-color: #0099ff;
+            padding: 8px 2rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1.5rem;
+            width: 100%;
+        }
+        .top-bar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+        .top-bar a:hover {
+            opacity: 0.8;
+        }
+
+        /* --- MAIN NAVIGATION HEADER BLOCK --- */
+        header { 
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0; 
+            width: 100%; 
+            padding: 1rem 2rem; 
+        }
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            width: 100%; 
+        }
+        .logo-container { 
+            display: flex; 
+            align-items: center; 
+            text-decoration: none; 
+        }
+        .logo-img { 
+            height: 45px; 
+            width: auto; 
+        }
+        .nav-links-right { 
+            display: flex; 
+            list-style: none; 
+            align-items: center; 
+            gap: 2rem; 
+        }
+        .nav-links-right a { 
+            text-decoration: none; 
+            color: #475569; 
+            font-weight: 600; 
+            font-size: 0.95rem; 
+            transition: color 0.2s; 
+        }
+        .nav-links-right a:hover, .nav-links-right a.active { 
+            color: #0099ff; 
+        }
+        .portal-cta-btn { 
+            background: #1e40af; 
+            color: #ffffff !important; 
+            padding: 0.6rem 1.2rem; 
+            border-radius: 8px; 
+        }
+
+        /* --- PREMIUM IMAGE HERO OVERLAY --- */
+        .immersive-hero {
+            position: relative;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(30, 64, 175, 0.65)), url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 380px;
+            width: 100%;
+            padding: 6rem 1.5rem 8rem;
+            text-align: center;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        /* Blending decorative layout waves */
+        .immersive-hero::before {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background: #f8fafc;
+            clip-path: polygon(0 60%, 35% 85%, 70% 35%, 100% 70%, 100% 100%, 0 100%);
+            opacity: 0.12;
+        }
+        .immersive-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            background: #f8fafc;
+            clip-path: polygon(0 50%, 40% 30%, 75% 75%, 100% 40%, 100% 100%, 0 100%);
+        }
+
+        .immersive-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: 1rem;
+        }
+        .immersive-hero p {
+            color: #e0f2fe;
+            font-size: 1.25rem;
+            max-width: 650px;
+            line-height: 1.6;
+        }
+
+        /* --- WORKSPACE TRACKS WRAPPERS --- */
+        .services-blueprint-container {
+            max-width: 1240px;
+            margin: 3rem auto 6rem;
+            padding: 0 1.5rem;
+            width: 100%;
+        }
+
+        .track-block-wrapper {
+            margin-bottom: 5.5rem;
+            scroll-margin-top: 40px;
+            position: relative;
+        }
+
+        .track-banner-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            border-left: 6px solid #1e40af;
+            padding-left: 1rem;
+        }
+        .indiv-theme .track-banner-title {
+            border-left-color: #0d9488;
+        }
+
+        .track-banner-subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            padding-left: 1.4rem;
+        }
+
+        /* --- HORIZONTAL HORIZON SCROLL DECK --- */
+        .scroll-viewport-container {
+            width: 100%;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 1.5rem 0.5rem 2.5rem;
+            cursor: grab;
+            /* Hide default scrollbars for premium look */
+            scrollbar-width: none; 
+        }
+        .scroll-viewport-container::-webkit-scrollbar {
+            display: none; 
+        }
+        .scroll-viewport-container:active {
+            cursor: grabbing;
+        }
+
+        .horizontal-slider-deck {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            padding-right: 2rem;
+        }
+
+        /* --- IMAGE SERVICE CARD CANVAS --- */
+        .blueprint-image-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            width: 420px;
+            height: 540px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -10px rgba(15, 23, 42, 0.08);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s;
+        }
+        .blueprint-image-card:hover {
+            transform: translateY(-8px);
+            border-color: #0099ff;
+            box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.15);
+        }
+
+        /* Card Image Frame */
+        .card-photo-frame {
+            height: 200px;
+            width: 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Specific Cover Images */
+        .img-formation { background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80'); }
+        .img-payroll { background-image: url('https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=600&q=80'); }
+        .img-compliance { background-image: url('https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80'); }
+        .img-agent { background-image: url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80'); }
+        .img-bookkeeping { background-image: url('https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?auto=format&fit=crop&w=600&q=80'); }
+        .img-biztax { background-image: url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=600&q=80'); }
+        
+        .img-indivtax { background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80'); }
+        .img-irs { background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80'); }
+        .img-itin { background-image: url('https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&w=600&q=80'); }
+        .img-1031 { background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80'); }
+        .img-planning { background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80'); }
+
+        .card-photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 30%, rgba(255, 255, 255, 0.95));
+        }
+
+        /* Card Description Block */
+        .card-text-workspace {
+            padding: 0 2.2rem 2.2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            background: #ffffff;
+        }
+        .card-text-workspace h3 {
+            font-size: 1.4rem;
+            color: #0f172a;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        .card-text-workspace p {
+            color: #475569;
+            font-size: 0.96rem;
+            line-height: 1.65;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+        /* Custom card narrative text scrollbar track */
+        .card-text-workspace p::-webkit-scrollbar {
+            width: 4px;
+        }
+        .card-text-workspace p::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 4px;
+        }
+
+        /* UI Navigation Helper Hints */
+        .scroll-hint-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #94a3b8;
+            position: absolute;
+            right: 1.5rem;
+            top: 1rem;
+        }
+
+        /* --- STYLISH SYSTEM FOOTER --- */
+        .fluid-canopy-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            margin-top: auto;
+            position: relative;
+            padding-top: 6px;
+        }
+        .fluid-canopy-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #ff4500, #1e40af, #0d9488, #ff4500);
+        }
+        .footer-inner-frame {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+        }
+        .footer-brand-node img {
+            height: 45px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+        .footer-office-channels h5 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+        .footer-office-channels p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .immersive-hero h1 { font-size: 2.5rem; }
+            .blueprint-image-card { width: 310px; height: 500px; }
+            .scroll-hint-label { display: none; }
+            .top-bar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="#">🌐 Facebook</a>
+        <a href="#">🌐 Twitter / X</a>
+        <a href="#">🌐 Instagram</a>
+        <a href="#">🌐 RSS</a>
+    </div>
+
+    <header>
+        <nav>
+            <a href="../homepage/home.html" class="logo-container">
+                <img class="logo-img" src="../logo.png" alt="Just Right Tax Logo">
+            </a>
+            <ul class="nav-links-right">
+                <li><a href="../homepage/home.html">Home</a></li>
+                <li><a href="../aboutus/about.html">About Us</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="../contactpage/contact.html">Contact Us</a></li>
+                <li><a href="../signinpage/signin.html" class="portal-cta-btn">Client Portal Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="immersive-hero">
+        <h1>Our Strategic Blueprints</h1>
+        <p>Explore our complete architecture of custom business development parameters and individual asset scaling mechanisms.</p>
+    </div>
+
+    <main class="services-blueprint-container">
+
+        <div class="track-block-wrapper" id="business-track">
+            <h2 class="track-banner-title">Business Services</h2>
+            <p class="track-banner-subtitle">Custom tools built to protect and scale your corporate infrastructure compliance loops seamlessly.</p>
+            <span class="scroll-hint-label">Scroll horizontally &rarr;</span>
+            
+            <div class="scroll-viewport-container">
+                <div class="horizontal-slider-deck">
+                    
+                    <div class="blueprint-image-card">
+                        <div class="card-photo-frame img-formation"><div class="card-photo-overlay"></div></div>
+                        <div class="card-text-workspace">
+                            <h3>Business & Non-Profit Formation</h3>
+                            <p>At JustRightTax, we are here to guide you through every step of the process when forming your business or non-profit. Whether you’re setting up an LLC, Corporation, Partnership, or any other type of entity, our experts ensure that your formation is handled smoothly and in full compliance with state and federal regulations. We help you choose the best structure for your business needs, file all necessary paperwork, and set you up for long-term success.</p>
+                        </div>
+                    </div>
+
+                    <div class="blueprint-image-card">
+                        <div class="card-photo-frame img-payroll"><div class="card-photo-overlay"></div></div>
+                        <div class="card-text-workspace">
+                            <h3>Payroll Processing</h3>
+                            <p>Managing payroll can be time-consuming and complex, but JustRightTax is here to take the burden off your shoulders. By providing us with your payroll information, you can rest easy knowing that your payroll will be processed correctly, on time, and in full compliance with tax laws. Our payroll services allow you to focus on the more important aspects of your business while ensuring your employees are paid accurately and promptly.</p>
+                        </div>
+                    </div>
+
+                    <div class="blueprint-image-card">
+                        <div class="card-photo-frame img-compliance"><div class="card-photo-overlay"></div></div>
+                        <div class="card-text-workspace">
+                            <h3>Corporate Compliance</h3>
+                            <p>Staying compliant with corporate regulations is crucial to your business’s success. JustRightTax serves our clients in addressing a variety of corporate compliance issues. We provide comprehensive solutions and conduct in-depth research to help businesses navigate current tax laws, regulatory requirements, and industry-specific standards. Our goal is to ensure your business stays on track and avoids costly fines or legal issues.</p>
+                        </div>
+                    </div>
+
+                    <div class="blueprint-image-card">
+                        <div class="card-photo-frame img-agent"><div class="card-photo-overlay"></div></div>
+                        <div class="card-text-workspace">
+                            <h3>Registered Agent Services</h3>
+                            <p>As a business entity, it is mandatory to have a Registered Agent to receive legal and tax documents on behalf of your company. At JustRightTax, we offer professional Registered Agent services to ensure that your business remains compliant with state requirements. Our team will handle all official communications and deliver them to you promptly, so you can focus on growing your business without the worry of missing important deadlines or notices.</p>
+                        </div>
+                    </div>
+
+                    <div class="blueprint-image-card">
+                        <div class="card-photo-frame img-bookkeeping"><div class="card-photo-overlay"></div></div>
+                        <div class="card-text-workspace">
+                            <h3>Bookkeeping Services</h3>
+                            <p>At JustRightTax, we understand the importance of accurate and timely bookkeeping. Our bookkeeping services are designed to meet the needs of businesses of all sizes. Whether you are a small startup or an established company, we ensure your books are always up to date and compliant with tax laws. Our service blends excellence, accuracy, and punctuality, so you can focus on growing your business while we handle the numbers.</p>
+                        </div>
+                    </div>
+
+                    <div class="blueprint-image-card">
+                        <div class="card-photo-frame img-biztax"><div class="card-photo-overlay"></div></div>
+                        <div class="card-text-workspace">
+                            <h3>Business Tax Returns</h3>
+                            <p>At JustRightTax, we are leaders in filing all types of business tax returns, whether simple or complex. We specialize in preparing and filing tax returns for LLCs, S-Corps, C-Corps, Partnerships, and all other business entities. Our team goes beyond filing— we also assist with generating 1099s for contractors, setting up payroll systems, and providing comprehensive bookkeeping services to keep your finances organized and compliant.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="track-block-wrapper indiv-theme" id="individual-track">
+            <h2 class="track-banner-title">Individual Services</h2>
+            <p class="track-banner-subtitle">Maximize your personal asset loops, claim deductions securely, and manage strategic international filings.</p>
+            <span class="scroll-hint-label">Scroll horizontally &rarr;</span>
+            
+            <div class="scroll-viewport-container">
+                <div class="horizontal-slider-deck">
+                    
+                    <div class="blueprint-image-card">
+                        <div class="card-photo-frame img-indivtax"><div class="card-photo-overlay"></div></div>
+                        <div class="card-text-workspace">
+                            <h3>Individual Tax Returns</h3>
+                            <p>At JustRightTax, our tax professionals have extensive experience in filing Individual Tax Returns. Whether it’s 1040, 1040NR, Itemized Deductions, Solo Proprietorship, Rental Properties, or handling K1s, we handle all forms with precision. We also specialize in filing returns across all 50 states, managing multiple W2s, 1099s, and more. Our goal is to maximize your refund while ensuring full IRS compliance.</p>
+                        </div>
+                    </div>
+
+                    <div class="blueprint-image-card">
+                        <div class="card-photo-frame img-irs"><div class="card-photo-overlay"></div></div>
+                        <div class="card-text-workspace">
+                            <h3>IRS Representation</h3>
+                            <p>Should you need representation before the IRS, JustRightTax is here to help. Our team will represent you with integrity and professionalism, ensuring that your interests are effectively communicated and your tax matters are handled properly.</p>
+                        </div>
+                    </div>
+
+                    <div class="blueprint-image-card">
+                        <div class="card-photo-frame img-itin"><div class="card-photo-overlay"></div></div>
+                        <div class="card-text-workspace">
+                            <h3>ITIN Preparation</h3>
+                            <p>For individuals without a Social Security Number, the IRS provides an ITIN (Individual Taxpayer Identification Number), used solely for tax purposes. JustRightTax can assist you in obtaining your ITIN and filing your taxes using it. Additionally, we offer COA (Certificate of Authorization) services, eliminating the need for an in-person visit to the IRS.</p>
+                        </div>
+                    </div>
+
+                    <div class="blueprint-image-card">
+                        <div class="card-photo-frame img-1031"><div class="card-photo-overlay"></div></div>
+                        <div class="card-text-workspace">
+                            <h3>1031 Exchange</h3>
+                            <p>If you own property in India or are considering buying or selling property, JustRightTax can assist you with the 1031 Exchange process. We simplify this tax-deferred exchange, ensuring you can defer paying capital gains taxes on the property sale while reinvesting in similar property. Let us guide you through this often complex process with ease.</p>
+                        </div>
+                    </div>
+
+                    <div class="blueprint-image-card">
+                        <div class="card-photo-frame img-planning"><div class="card-photo-overlay"></div></div>
+                        <div class="card-text-workspace">
+                            <h3>Advanced Tax Planning</h3>
+                            <p>At JustRightTax, we offer expert Tax Planning services designed to help you legally reduce your tax burden. Our team works with you to calculate the taxes you need to pay in advance, preventing costly penalties. We provide real-time suggestions and guidance, ensuring you make the right tax-related decisions throughout the year.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="fluid-canopy-footer">
+        <div class="footer-inner-frame">
+            <div class="footer-brand-node">
+                <img src="../logo.png" alt="Just Right Tax Bottom Logo">
+            </div>
+            <div class="footer-office-channels">
+                <h5>Corporate Headquarters</h5>
+                <p>📍 12800 Westridge Blvd, Suite 272, Frisco, TX 75035</p>
+                <p>📱 Mobile Endpoint - (972) 665-7196</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // URL Param Router Tracking Engine Auto Focus
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const track = params.get('track');
+            if (track === 'business') {
+                const target = document.getElementById('business-track');
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            } else if (track === 'individual') {
+                const target = document.getElementById('individual-track');
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Mouse Drag to Scroll Mechanics Setup
+        const sliders = document.querySelectorAll('.scroll-viewport-container');
+        sliders.forEach(slider => {
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+            slider.addEventListener('mouseleave', () => { isDown = false; });
+            slider.addEventListener('mouseup', () => { isDown = false; });
+            slider.addEventListener('mousemove', (e) => {
+                if(!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2; // Scroll Speed
+                slider.scrollLeft = scrollLeft - walk;
+            });
+            
+            // Mouse Wheel side-scroll cross-bindings
+            slider.addEventListener('wheel', (e) => {
+                if (e.deltaY !== 0) {
+                    e.preventDefault();
+                    slider.scrollLeft += e.deltaY;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

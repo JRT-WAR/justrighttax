@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Government Tax Updates | Just Right Tax</title>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+        }
+        body { 
+            background: #f8fafc; 
+            color: #1e293b; 
+            min-height: 100vh; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- TOP BLUE NAVIGATION BAR --- */
+        .top-bar {
+            background-color: #0099ff;
+            padding: 8px 2rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1.5rem;
+            width: 100%;
+        }
+        .top-bar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+        .top-bar a:hover { opacity: 0.8; }
+
+        /* --- NAVIGATION HEADER --- */
+        header { 
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0; 
+            width: 100%; 
+            padding: 1rem 2rem; 
+        }
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            width: 100%; 
+        }
+        .logo-container { display: flex; align-items: center; text-decoration: none; }
+        .logo-img { height: 45px; width: auto; }
+        .nav-links-right { display: flex; list-style: none; align-items: center; gap: 2rem; }
+        .nav-links-right a { text-decoration: none; color: #475569; font-weight: 600; font-size: 0.95rem; transition: color 0.2s; }
+        .nav-links-right a:hover { color: #0099ff; }
+        .portal-cta-btn { background: #1e40af; color: #ffffff !important; padding: 0.6rem 1.2rem; border-radius: 8px; }
+
+        /* --- HERO HEADLINE --- */
+        .updates-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            color: #ffffff;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .updates-hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .updates-hero p { color: #93c5fd; font-size: 1.1rem; }
+
+        /* --- NEWS FEED CONTAINER --- */
+        .feed-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+        .loading-state {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #64748b;
+            padding: 3rem;
+        }
+        .update-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.02);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .update-card:hover {
+            transform: translateY(-2px);
+            border-color: #0099ff;
+            box-shadow: 0 12px 20px -8px rgba(15, 23, 42, 0.08);
+        }
+        .card-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ef4444;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+        .card-date { color: #64748b; font-weight: 500; }
+        .update-card h2 { font-size: 1.4rem; color: #0f172a; margin-bottom: 1rem; font-weight: 700; line-height: 1.3; }
+        .update-card p { color: #475569; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; }
+        .official-link-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: #1e40af; text-decoration: none; font-weight: 700; font-size: 0.95rem; }
+        .official-link-btn:hover { text-decoration: underline; }
+
+        /* --- FOOTER --- */
+        .fluid-canopy-footer { background: #0f172a; color: #94a3b8; margin-top: auto; position: relative; padding-top: 6px; }
+        .fluid-canopy-footer::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, #ff4500, #1e40af, #0d9488, #ff4500); }
+        .footer-inner-frame { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2.5rem; }
+        .footer-brand-node img { height: 45px; width: auto; filter: brightness(0) invert(1); }
+        .footer-office-channels h5 { color: #ffffff; font-size: 1.1rem; margin-bottom: 0.75rem; font-weight: 700; }
+        .footer-office-channels p { font-size: 0.95rem; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="#">🌐 Facebook</a>
+        <a href="#">🌐 Twitter / X</a>
+        <a href="#">🌐 Instagram</a>
+    </div>
+
+    <header>
+        <nav>
+            <a href="../homepage/home.html" class="logo-container">
+                <img class="logo-img" src="../logo.png" alt="Just Right Tax Logo">
+            </a>
+            <ul class="nav-links-right">
+                <li><a href="../homepage/home.html">Home</a></li>
+                <li><a href="../aboutus/about.html">About Us</a></li>
+                <li><a href="../services/services.html">Services</a></li>
+                <li><a href="../contactpage/contact.html">Contact Us</a></li>
+                <li><a href="../signinpage/signin.html" class="portal-cta-btn">Client Portal Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="updates-hero">
+        <h1>Federal Regulatory Updates</h1>
+        <p>Live tax declarations, legislative alerts, and compliance updates processed directly from government newsrooms.</p>
+    </div>
+
+    <main class="feed-container" id="updatesFeed">
+        <div class="loading-state">Syncing secure connection with federal announcement feeds...</div>
+    </main>
+
+    <footer class="fluid-canopy-footer">
+        <div class="footer-inner-frame">
+            <div class="footer-brand-node"><img src="../logo.png" alt="Just Right Tax"></div>
+            <div class="footer-office-channels">
+                <h5>Corporate Headquarters</h5>
+                <p>📍 12800 Westridge Blvd, Suite 272, Frisco, TX 75035</p>
+                <p>📱 Mobile Endpoint - (972) 665-7196</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        async function loadAllUpdates() {
+            const feedContainer = document.getElementById('updatesFeed');
+            const irsRssUrl = 'https://www.irs.gov/newsroom/article/index.rss';
+            
+            // Fixed using an open logic wrapper to bypass Localhost CORS blocks
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(irsRssUrl)}`;
+
+            try {
+                const response = await fetch(proxyUrl);
+                const wrapperData = await response.json();
+                
+                // Parse the raw XML data returned from the server string safely
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(wrapperData.contents, "text/xml");
+                const items = xmlDoc.getElementsByTagName("item");
+
+                if (items.length > 0) {
+                    feedContainer.innerHTML = ''; // Clear out the loading text
+                    
+                    // Loop through the actual items returned by the IRS feed
+                    for (let i = 0; i < Math.min(items.length, 10); i++) {
+                        const title = items[i].getElementsByTagName("title")[0]?.textContent || "Tax Announcement Update";
+                        const link = items[i].getElementsByTagName("link")[0]?.textContent || "https://www.irs.gov/newsroom";
+                        const pubDate = items[i].getElementsByTagName("pubDate")[0]?.textContent || "";
+                        const description = items[i].getElementsByTagName("description")[0]?.textContent || "Click the link below to view details on the official government bulletin.";
+
+                        const dateObj = new Date(pubDate);
+                        const formattedDate = isNaN(dateObj) ? "Recent" : dateObj.toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric'});
+                        
+                        // Clean out raw XML coding patterns from showing up in paragraph text box summaries
+                        const cleanDescription = description.replace(/<[^>]*>/g, '').substring(0, 250) + '...';
+
+                        const card = document.createElement('div');
+                        card.className = 'update-card';
+                        card.innerHTML = `
+                            <div class="card-meta">
+                                <span>Federal Notice</span>
+                                <span class="card-date">${formattedDate}</span>
+                            </div>
+                            <h2>${title}</h2>
+                            <p>${cleanDescription}</p>
+                            <a href="${link}" target="_blank" class="official-link-btn">
+                                Read Complete Government Bulletin &rarr;
+                            </a>
+                        `;
+                        feedContainer.appendChild(card);
+                    }
+                } else {
+                    throw new Error("No items found");
+                }
+            } catch (error) {
+                // Fallback database if government lines time out locally
+                feedContainer.innerHTML = `
+                    <div class="update-card">
+                        <div class="card-meta"><span>Active Notice</span></div>
+                        <h2>Federal Tax Filing Operations Are Currently Active</h2>
+                        <p>The system is processing current returns cleanly. For real-time bulletins regarding adjustments to corporate regulations or individual tax brackets, review the main repository.</p>
+                        <a href="https://www.irs.gov/newsroom" target="_blank" class="official-link-btn">Open IRS Newsroom Registry &rarr;</a>
+                    </div>`;
+            }
+        }
+        window.addEventListener('DOMContentLoaded', loadAllUpdates);
+    </script>
+</body>
+</html>
